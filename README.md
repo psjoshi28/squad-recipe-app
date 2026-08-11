@@ -25,6 +25,9 @@ squad-recipe-app/
         └── models/    recipe.ts
 ```
 
+## To run in docker container
+docker compose run --rm app bash
+
 ## Running the App
 
 ### Backend
