@@ -1,0 +1,75 @@
+<div class="recipe-list">
+  <div *ngIf="loading" class="state-msg">Loading recipes...</div>
+  <div *ngIf="error" class="error-msg">{{ error }}</div>
+  <div *ngIf="updateError" class="error-msg">{{ updateError }}</div>
+  <div *ngIf="updateSuccess" class="success-msg">{{ updateSuccess }}</div>
+
+  <div *ngIf="!loading && !error && recipes.length === 0" class="state-msg empty">
+    No recipes yet. Add your first one!
+  </div>
+
+  <div class="recipe-grid">
+    <div class="recipe-card" *ngFor="let recipe of recipes">
+      <ng-container *ngIf="!isEditing(recipe.id); else editRecipe">
+        <h3 class="recipe-name">{{ recipe.name }}</h3>
+        <p class="ingredients-label">Ingredients</p>
+        <ul class="ingredient-list">
+          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+        </ul>
+
+        <div class="card-actions">
+          <button type="button" class="btn btn-secondary" (click)="startEdit(recipe)">Edit</button>
+        </div>
+      </ng-container>
+
+      <ng-template #editRecipe>
+        <div class="form-group">
+          <label [attr.for]="'editName-' + recipe.id">Recipe Name</label>
+          <input
+            [attr.id]="'editName-' + recipe.id"
+            type="text"
+            [(ngModel)]="editName"
+            maxlength="100"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label [attr.for]="'editIngredientInput-' + recipe.id">Ingredients</label>
+          <div class="ingredient-input-row">
+            <input
+              [attr.id]="'editIngredientInput-' + recipe.id"
+              type="text"
+              [(ngModel)]="editIngredientInput"
+              maxlength="100"
+              class="form-control"
+              (keydown)="onEditIngredientKeydown($event)"
+              placeholder="e.g. 1 tsp salt"
+            />
+            <button type="button" class="btn btn-secondary" (click)="addEditIngredient()">
+              Add
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="editIngredients.length > 0" class="ingredient-tags">
+          <span class="tag" *ngFor="let ing of editIngredients; let i = index">
+            {{ ing }}
+            <button type="button" class="tag-remove" (click)="removeEditIngredient(i)" aria-label="Remove">
+              ×
+            </button>
+          </span>
+        </div>
+
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary" [disabled]="updating" (click)="saveEdit(recipe)">
+            {{ updating ? 'Saving...' : 'Save' }}
+          </button>
+          <button type="button" class="btn btn-ghost" [disabled]="updating" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

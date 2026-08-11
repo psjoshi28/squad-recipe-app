@@ -1,0 +1,29 @@
+<div class="shell">
+  <header class="app-header">
+    <h1>🍴 Recipe App</h1>
+  </header>
+
+  <nav class="tab-bar">
+    <button
+      class="tab-btn"
+      [class.active]="activeTab === 'view'"
+      (click)="activeTab = 'view'"
+    >
+      All Recipes
+    </button>
+    <button
+      class="tab-btn"
+      [class.active]="activeTab === 'add'"
+      (click)="activeTab = 'add'"
+    >
+      + Add Recipe
+    </button>
+  </nav>
+
+  <main class="tab-content">
+    <ng-container [ngSwitch]="activeTab">
+      <app-recipe-list *ngSwitchCase="'view'"></app-recipe-list>
+      <app-add-recipe *ngSwitchCase="'add'" (recipeAdded)="onRecipeAdded()"></app-add-recipe>
+    </ng-container>
+  </main>
+</div>

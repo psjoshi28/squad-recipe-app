@@ -1,0 +1,20 @@
+[
+  {
+    "id": "869cd343-a214-490e-a866-f54849483d0b",
+    "name": "Spaghetti",
+    "ingredients": [
+      "spaghetti",
+      "tomato"
+    ]
+  },
+  {
+    "id": "36ecca20-3ea6-42ef-ac80-d4ec82f40435",
+    "name": "Tea",
+    "ingredients": [
+      "tea leaves",
+      "milk",
+      "water",
+      "sugar"
+    ]
+  }
+]

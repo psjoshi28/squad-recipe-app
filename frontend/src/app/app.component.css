@@ -1,0 +1,52 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: #2c3e50;
+  color: #fff;
+  padding: 18px 32px;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+}
+
+.tab-bar {
+  background: #34495e;
+  display: flex;
+  gap: 4px;
+  padding: 0 28px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: #bdc3c7;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab-btn:hover {
+  color: #ecf0f1;
+}
+
+.tab-btn.active {
+  color: #e67e22;
+  border-bottom-color: #e67e22;
+}
+
+.tab-content {
+  flex: 1;
+  padding: 32px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
